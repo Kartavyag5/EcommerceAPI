@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
+    path('',ListCategory.as_view(), name='API-Home')
     path('categories/', ListCategory.as_view(), name='categorie'),
     path('categories/<int:pk>/', DetailCategory.as_view(), name='singlecategory'),
     
