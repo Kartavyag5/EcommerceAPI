@@ -1,1 +1,1 @@
-web: waitress-serve --port=8000 EcommerceAPI.wsgi:application
+web: waitress-serve --port=$PORT EcommerceAPI.wsgi:application
