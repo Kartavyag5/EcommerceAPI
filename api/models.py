@@ -6,7 +6,7 @@ from EcommerceAPI.utils import unique_product_id_generator
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
-import stripe
+
 
 # Create your models here.
 

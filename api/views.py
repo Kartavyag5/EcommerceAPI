@@ -20,7 +20,6 @@ from django.contrib.auth.decorators import login_required
 
 import json
 import razorpay
-import stripe
 import environ
 from django.conf import settings
 from django.http import HttpResponse
