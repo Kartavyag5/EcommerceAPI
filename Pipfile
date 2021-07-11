@@ -30,12 +30,14 @@ reportlab = "==3.5.68"
 requests = "==2.25.1"
 six = "==1.14.0"
 sqlparse = "==0.4.1"
-stripe = "==2.48.0"
 urllib3 = "==1.26.6"
 webencodings = "==0.5.1"
 xhtml2pdf = "==0.2.5"
 Django = "==3.2.4"
 Pillow = "==8.3.0"
+waitress = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
