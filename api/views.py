@@ -102,27 +102,26 @@ class CartAPIView(ListCreateAPIView):
     permission_classes = [IsOwner, IsAdminUser]
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
-    filter_backends = [SearchFilter,OrderingFilter]
-    search_fields = ['id','^user']
+    filter_backends = [OrderingFilter]
     ordering_fields = '__all__'
 
-class CheckProductInCart(APIView):
+class CartDetailsAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    filter_backends = [OrderingFilter]
+    ordering_fields = '__all__'
 
-    def get(self, request, *args, product_id, **kwargs):
-        product_obj = get_object_or_404(Product, pk=product_id)
-        cart_obj, created = Cart.objects.get_existing_or_new(request)
-        return Response(not created and CartItem.objects.filter(cart=cart_obj, product=product_obj).exists())
 
 
 #----------------Billing Profile--------------------------
 
-class BillingProfileAPIView(ListAPIView):
+class BillingProfileAPIView(ListCreateAPIView):
     permission_classes = [IsOwner]
     serializer_class = BillingProfileSerializer
     #queryset = BillingProfile.objects.all()
     filter_backends = [SearchFilter,OrderingFilter]
-    search_fields = '__all__'
+    search_fields = ['^name','^email','^city','^address_line_1','^address_line_2','^state']
     ordering_fields = '__all__'
 
     def get_queryset(self):
