@@ -6,7 +6,7 @@ from EcommerceAPI.utils import unique_product_id_generator
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
-
+from .models import *
 
 # Create your models here.
 
@@ -77,13 +77,7 @@ class Cart(models.Model):
 
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(
-        default=1,
-        validators=[
-            MaxValueValidator(5),
-            MinValueValidator(1)
-        ]
-     )
+    quantity = models.IntegerField(default=1, validators=[MaxValueValidator(5),MinValueValidator(1)])
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="products")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -91,11 +85,9 @@ class CartItem(models.Model):
     def __str__(self):
         return f"{self.product}: {str(self.cart)[0:21]}"
 
+    
 
 #------------------billing profile---------------------------
-
-
-
 
 
 class BillingProfile(models.Model):
@@ -112,9 +104,7 @@ class BillingProfile(models.Model):
         HU = 'HU', 'Hungary'
         IS = 'IS', 'Iceland'
         IN = 'IN', 'India'
-
-    stripe_customer_id = models.CharField(
-        max_length=100, blank=True, null=True)   
+   
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     email = models.EmailField()
@@ -170,7 +160,6 @@ class Order(models.Model):
         default=70, max_digits=10, decimal_places=2)
     order_payment_id = models.CharField(max_length=100, null=True, blank=True)
 
-    
     #exclude=("order_id",)
     def __str__(self):
         return f"{str(self.cart)[0:9]}  {str(self.cart)[9:28]}"

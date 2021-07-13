@@ -14,28 +14,18 @@ urlpatterns = [
     path('users/registration',RegistrationAPIView.as_view(),name='registration'),
 
 #------new Cart---------------------
-    path('carts/', CartAPIView.as_view(), name='carts'),
-    path('carts/<int:pk>/', CartDetailsAPIView.as_view(), name='cartDetails'),
-    
+    path('carts/', CartAPIView.as_view(), name='carts'),    
+    path('carts/<int:pk>/', CartDetailsView.as_view(), name='cart_Details'),    
 
 #-------------orders---------------------
     path('orders/', OrderListView.as_view(), name='orders'),
     path('orders/<int:pk>/', OrderDetailsView.as_view(), name='orderDetails'),
     path('billing_profile',BillingProfileAPIView.as_view(), name='billing_profiles'),
-
-#---------------payment checkout urls-----------------------
-    #path("checkout/", CheckoutView.as_view()),
-    #path("hook/", my_webhook_view),
-    #path('pay/', start_payment, name="payment"),
-    # path('payment/success/', handle_payment_success, name="payment_success"),
     
     #path('test/',test,name='test'),
 
 #----------------Razorpay urls------------------------------
  # Payment APIs
     path('payment/', payment, name = 'payment'),
-    # path('handlerequest/', handlerequest, name = 'handlerequest'),
-    # # Generating Invoice
-    # path('generateinvoice/<int:pk>/', GenerateInvoice.as_view(), name = 'generateinvoice'),
-
+   
 ]

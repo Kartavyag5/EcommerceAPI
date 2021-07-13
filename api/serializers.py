@@ -112,6 +112,7 @@ class CartItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
+        
         fields = ['id', 'product', 'quantity']
 
 
@@ -165,6 +166,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'cart_total',
             'tax_total',
             'grand_total',
+            
         ]   
 
 

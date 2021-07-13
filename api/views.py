@@ -91,28 +91,25 @@ class DetailProduct(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [SearchFilter,OrderingFilter]
     
-
-
 #-------------------new Cart section------------------------
 
 
-class CartAPIView(ListCreateAPIView):
-    permission_classes = [IsOwner, IsAdminUser]
+class CartAPIView(ListAPIView):
+    permission_classes = [IsAdminUser]
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
     filter_backends = [OrderingFilter]
     ordering_fields = '__all__'
 
-class CartDetailsAPIView(RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAuthenticated]
+class CartDetailsView(RetrieveDestroyAPIView):
+    permission_classes = [IsOwner]
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
     filter_backends = [OrderingFilter]
     ordering_fields = '__all__'
 
-
+        
 
 #----------------Billing Profile--------------------------
 
