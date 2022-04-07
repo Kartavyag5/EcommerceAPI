@@ -25,6 +25,7 @@ class Category(models.Model):
         return self.title
         
 
+# product modal
 class Product(models.Model):
     product_tag = models.CharField(max_length=10)
     name = models.CharField(max_length=100)
