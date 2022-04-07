@@ -12,7 +12,7 @@ from .models import *
 
 User = get_user_model()
 
-
+# category modal
 class Category(models.Model):
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
